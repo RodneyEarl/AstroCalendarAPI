@@ -1,3 +1,9 @@
 #Eclipse Preferences#
 #####################
-*.prefs
+#Folders to be ignored
+*/.settings
+
+# Files to be ignored
+.metadata
+.project
+.buildpath

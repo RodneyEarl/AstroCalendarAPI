@@ -1,73 +1,112 @@
 <?php
 require_once('AstroCalendarAPI\API\getDate.php');
 /**
- * Test Class for $_GET
+ * Test Class for Receiving a request
  * @author Rodney
  */
 class GetDateTest extends PHPUnit_Framework_TestCase{
 
 	/**
-	 * Set up the $_GET and date variable.
+	 * Set up the data and dateArray variable.
 	 * Dates are in day-month-year, numerically 2 digits each, separated by a dash.
 	 */
-	var $date;
-	public function setUp(){
-		$_GET['startDate'] = '21-11-12';
-		$_GET['endDate'] = '30-11-12';
+	var $dateArray;
+	protected function setUp(){
+		$date = new getDate('14-11-2011', '28-11-2011');
+		$this->dateArray = $date->createArray();
 	}
 	/**
-	 * Test to check that the start day can be parsed from $_GET.
+	 * Test that dateArray has the startDate index.
 	 */
-	public function testStartAt21November2012HasDay21(){
+	public function testDateArrayHasStartDateKey(){
 
-		$date = new GETRequest();
-		$startDay = $date->start_day();
-		$this->assertEquals('21', $startDay);
+		$this->assertArrayHasKey('startDate', $this->dateArray);
 	}
 	/**
-	 * Test to check that the start month can be parsed from $_GET.
+	 * Test that dateArray['startDate'] has day index.
 	 */
-	public function testStartAt21November2012HasMonth11(){
+	public function testStartDateHasDayKey(){
 
-		$date = new GETRequest();
-		$startMonth = $date->start_month();
-		$this->assertEquals('11', $startMonth);
+		$this->assertArrayHasKey('day', $this->dateArray['startDate']);
+	}/**
+	* Test that dateArray['startDate'] has day index.
+	*/
+	public function testStartDateHasMonthKey(){
+
+		$this->assertArrayHasKey('month', $this->dateArray['startDate']);
+	}/**
+	* Test that dateArray['startDate'] has day index.
+	*/
+	public function testStartDateHasYearKey(){
+
+		$this->assertArrayHasKey('year', $this->dateArray['startDate']);
+	}/**
+	* Test that dateArray has the startDate index.
+	*/
+	public function testDateArrayHasEndDateKey(){
+
+		$this->assertArrayHasKey('endDate', $this->dateArray);
 	}
 	/**
-	 * Test to check that the start year can be parsed from $_GET.
+	 * Test that dateArray['startDate'] has day index.
 	 */
-	public function testStartAt21November2012HasYear12(){
+	public function testEndDateHasDayKey(){
 
-		$date = new GETRequest();
-		$startYear = $date->start_year();
-		$this->assertEquals('12', $startYear);
+		$this->assertArrayHasKey('day', $this->dateArray['endDate']);
+	}/**
+	* Test that dateArray['startDate'] has day index.
+	*/
+	public function testEndDateHasMonthKey(){
+
+		$this->assertArrayHasKey('month', $this->dateArray['endDate']);
+	}/**
+	* Test that dateArray['startDate'] has day index.
+	*/
+	public function testEndDateHasYearKey(){
+
+		$this->assertArrayHasKey('year', $this->dateArray['endDate']);
+	}
+	/**
+	 * Test to check that the start day can be parsed.
+	 */
+	public function testStartAt14November2011HasDay14(){
+
+		$this->assertEquals('14', $this->dateArray['startDate']['day']);
+	}
+	/**
+	 * Test to check that the start month can be parsed.
+	 */
+	public function testStartAt14November2011HasMonth11(){
+
+		$this->assertEquals('11', $this->dateArray['startDate']['month']);
+	}
+	/**
+	 * Test to check that the start year can be parsed.
+	 */
+	public function testStartAt14November2011HasYear2011(){
+
+		$this->assertEquals('2011', $this->dateArray['startDate']['year']);
 	}
 
 	/**
-	 * Test to check that the end day can be parsed from $_GET.
+	 * Test to check that the end day can be parsed.
 	 */
-	public function testEndAt30November2012HasDay30(){
+	public function testEndAt28November2011HasDay28(){
 
-		$date = new GETRequest();
-		$endDay = $date->end_day();
-		$this->assertEquals('30', $endDay);
+		$this->assertEquals('28', $this->dateArray['endDate']['day']);
 	}
 	/**
-	 * Test to check that the end month can be parsed from $_GET.
+	 * Test to check that the end month can be parsed.
 	 */
-	public function testEndAt30November2012HasMonth11(){
+	public function testEndAt28November2011HasMonth11(){
 
-		$date = new GETRequest();
-		$endMonth = $date->end_month();
-		$this->assertEquals('11', $endMonth);
+		$this->assertEquals('11', $this->dateArray['endDate']['month']);
 	}
 	/**
-	 * Test to check that the end year can be parsed from $_GET.
+	 * Test to check that the end year can be parsed.
 	 */
-	public function testEndAt30November2012HasYear12(){
+	public function testEndAt28November2011HasYear2011(){
 
-		$date = new GETRequest();
-		$endYear = $date->end_year();
-		$this->assertEquals('12', $endYear);
+		$this->assertEquals('2011', $this->dateArray['endDate']['year']);
 	}
 }

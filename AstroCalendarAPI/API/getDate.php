@@ -1,6 +1,11 @@
 <?php
-class GETRequest {
-	
+/**
+ * Take a request for dates and creates an array to
+ * be used in the API
+ * @author Rodney
+ */
+class getDate {
+
 	/**
 	 * The start day for the request of information.
 	 * @var array
@@ -11,23 +16,41 @@ class GETRequest {
 	 * @var array
 	 */
 	var $end_date;
-	
+
 	/**
 	 * Constructor to set up the start and end dates.
 	 */
-	function GETRequest(){
-		$temp = explode('-', $_GET['startDate']);
+	public function getDate($start, $end){
+		$temp = explode('-', $start);
 		$this->start_date = array('day' => $temp[0],
 			'month' => $temp[1],
 			'year' => $temp[2]
 		);
-		$temp = explode('-', $_GET['endDate']);
+		$temp = explode('-', $end);
 		$this->end_date = array('day' => $temp[0],
 			'month' => $temp[1],
 			'year' => $temp[2]
 		);
 	}
-	
+
+	/**
+	 * Sets up the array that is to be sent to other functions.
+	 * Currently uses nested arrays.
+	 */
+	public function createArray(){
+		$arr = array();
+		$arr['startDate'] = array(
+			'day' => $this->start_day(),
+			'month' => $this->start_month(),
+			'year' => $this->start_year()
+		);
+		$arr['endDate'] = array(
+			'day' => $this->end_day(),
+			'month' => $this->end_month(),
+			'year' => $this->end_year()
+		);
+		return $arr;
+	}
 	/**
 	 * Getter for the start day.
 	 */
@@ -46,7 +69,7 @@ class GETRequest {
 	public function start_year(){
 		return $this->start_date['year'];
 	}
-	
+
 	/**
 	 * Getter for the end day.
 	 */
