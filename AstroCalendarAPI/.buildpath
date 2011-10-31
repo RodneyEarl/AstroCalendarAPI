@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<buildpath>
-	<buildpathentry excluding="Tests/|API/" kind="src" path=""/>
-	<buildpathentry kind="src" path="Tests"/>
-	<buildpathentry kind="src" path="API"/>
-	<buildpathentry kind="con" path="org.eclipse.php.core.LANGUAGE"/>
-</buildpath>
