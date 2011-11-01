@@ -15,27 +15,27 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 		$info[0] = array();
 		$info[0]['day'] = 'Monday';
 		$info[0]['dayNumerical'] = '14';
-		$info[0]['month'] = 'November';
+		$info[0]['month'] = '11';
 		$info[0]['year'] = '2011';
 		$info[0]['payload'] = array(
 			'sunrise'  => '07-44-00',
             'sunset'   => '17-34-23',
             'moonrise' => '13-08-00',
             'moonset'  => '22-08-00'
-            );
-            $info[1] = array();
-            $info[1]['day'] = 'Tuesday';
-            $info[1]['dayNumerical'] = '15';
-            $info[1]['month'] = 'Novmeber';
-            $info[1]['year'] = '2011';
-            $info[1]['payload'] = array(
+		);
+		$info[1] = array();
+		$info[1]['day'] = 'Tuesday';
+		$info[1]['dayNumerical'] = '15';
+		$info[1]['month'] = '11';
+		$info[1]['year'] = '2011';
+		$info[1]['payload'] = array(
 			'sunrise'  => '07-52-00',
-            'sunset'   => '17-28-00',
-            'moonrise' => '13-02-22',
-            'moonset'  => '22-15-38'
-            );
-            $json = $jsonObj->createJSON($info);
-            $this->jsonOutput = json_decode($json, true);
+			'sunset'   => '17-28-00',
+			'moonrise' => '13-02-22',
+			'moonset'  => '22-15-38'
+		);
+		$json = $jsonObj->createJSON($info);
+		$this->jsonOutput = json_decode($json, true);
 	}
 	/**
 	 * Test to check that the JSON had counted the number of days given.
@@ -131,9 +131,9 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 	/**
 	 * Check that the first index has month November.
 	 */
-	public function testFirstIndexHasMonthNovember(){
+	public function testFirstIndexHasMonth11(){
 
-		$this->assertEquals('November', $this->jsonOutput[0]['month']);
+		$this->assertEquals('11', $this->jsonOutput[0]['month']);
 	}
 	/**
 	 * Check that the first index has year 2011.
