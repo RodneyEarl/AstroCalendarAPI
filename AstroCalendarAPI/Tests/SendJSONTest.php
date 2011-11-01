@@ -21,21 +21,25 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 			'sunrise'  => '07-44-00',
             'sunset'   => '17-34-23',
             'moonrise' => '13-08-00',
-            'moonset'  => '22-08-00'
-		);
-		$info[1] = array();
-		$info[1]['day'] = 'Tuesday';
-		$info[1]['dayNumerical'] = '15';
-		$info[1]['month'] = '11';
-		$info[1]['year'] = '2011';
-		$info[1]['payload'] = array(
+            'moonset'  => '22-08-00',
+			'tithi' => 'Ashtami',
+			'fortnight' => 'Shukla paksha'
+			);
+			$info[1] = array();
+			$info[1]['day'] = 'Tuesday';
+			$info[1]['dayNumerical'] = '15';
+			$info[1]['month'] = '11';
+			$info[1]['year'] = '2011';
+			$info[1]['payload'] = array(
 			'sunrise'  => '07-52-00',
 			'sunset'   => '17-28-00',
 			'moonrise' => '13-02-22',
-			'moonset'  => '22-15-38'
-		);
-		$json = $jsonObj->createJSON($info);
-		$this->jsonOutput = json_decode($json, true);
+			'moonset'  => '22-15-38',
+			'tithi' => 'Ashtami',
+			'fortnight' => 'Shukla paksha'
+			);
+			$json = $jsonObj->createJSON($info);
+			$this->jsonOutput = json_decode($json, true);
 	}
 	/**
 	 * Test to check that the JSON had counted the number of days given.
@@ -108,6 +112,20 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 		$this->assertArrayHasKey('moonset', $this->jsonOutput[0]['payload']);
 	}
 	/**
+	 * Test to check that a payload has tithi.
+	 */
+	public function testFirstPayloadHasKeyTithi(){
+
+		$this->assertArrayHasKey('tithi', $this->jsonOutput[0]['payload']);
+	}
+	/**
+	 * Test to check that a payload has fortnight.
+	 */
+	public function testFirstPayloadHasKeyFortnight(){
+
+		$this->assertArrayHasKey('fortnight', $this->jsonOutput[0]['payload']);
+	}
+	/**
 	 * Check that the count is 2.
 	 */
 	public function testJSONNHas2Counts(){
@@ -169,5 +187,19 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 	public function testFirstPayloadHasMoonset220800(){
 
 		$this->assertEquals('22-08-00', $this->jsonOutput[0]['payload']['moonset']);
+	}
+	/**
+	 * Check that the first payload tithi is Ashtami.
+	 */
+	public function testFirstPayloadHasTithiAshtami(){
+
+		$this->assertEquals('Ashtami', $this->jsonOutput[0]['payload']['tithi']);
+	}
+	/**
+	 * Check that the first payload fortnight is Shukla paksha.
+	 */
+	public function testFirstPayloadHasFortnightShuklaPaksha(){
+
+		$this->assertEquals('Shukla paksha', $this->jsonOutput[0]['payload']['fortnight']);
 	}
 }

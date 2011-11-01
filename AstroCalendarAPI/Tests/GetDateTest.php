@@ -8,7 +8,7 @@ class GetDateTest extends PHPUnit_Framework_TestCase{
 
 	/**
 	 * Set up the data and dateArray variable.
-	 * Dates are in day-month-year, numerically 2 digits each, separated by a dash.
+	 * Dates are in the form dd-mm-yyyy.
 	 */
 	var $dateArray;
 	protected function setUp(){
