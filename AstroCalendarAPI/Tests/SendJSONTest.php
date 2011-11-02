@@ -18,6 +18,7 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 		$info[0]['month'] = '11';
 		$info[0]['year'] = '2011';
 		$info[0]['payload'] = array(
+			'lunarMonth' => 'Kartik',
 			'sunrise'  => '07-44-00',
             'sunset'   => '17-34-23',
             'moonrise' => '13-08-00',
@@ -31,6 +32,7 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 			$info[1]['month'] = '11';
 			$info[1]['year'] = '2011';
 			$info[1]['payload'] = array(
+			'lunarMonth' => 'Kartik',
 			'sunrise'  => '07-52-00',
 			'sunset'   => '17-28-00',
 			'moonrise' => '13-02-22',
@@ -82,6 +84,13 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 	public function testFirstIndexHasKeyPayload(){
 
 		$this->assertArrayHasKey('payload', $this->jsonOutput[0]);
+	}
+	/**
+	 * Test to check that a payload has lunar month.
+	 */
+	public function testFirstPayloadHasKeyLunarMonth(){
+		
+		$this->assertArrayHasKey('lunarMonth', $this->jsonOutput[0]['payload']);
 	}
 	/**
 	 * Test to check that a payload has sunrise.
@@ -159,6 +168,13 @@ class SendJSONTest extends PHPUnit_Framework_TestCase{
 	public function testFirstIndexHasYear2011(){
 
 		$this->assertEquals('2011', $this->jsonOutput[0]['year']);
+	}
+	/**
+	 * Check that the first payload has lunar month Kartik.
+	 */
+	public function testFirstPayloadHasLunarMonthKartik(){
+		
+		$this->assertEquals('Kartik', $this->jsonOutput[0]['payload']['lunarMonth']);
 	}
 	/**
 	 * Check that the first payload sunrise is 07-44-00.
