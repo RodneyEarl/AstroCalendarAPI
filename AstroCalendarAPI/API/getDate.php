@@ -35,19 +35,20 @@ class getDate {
 
 	/**
 	 * Sets up the array that is to be sent to other functions.
+	 * Needs time for ephemeris.
 	 * Currently uses nested arrays.
 	 */
 	public function createArray(){
 		$arr = array();
 		$arr['startDate'] = array(
-			'day' => $this->start_day(),
+			'year' => $this->start_year(),
 			'month' => $this->start_month(),
-			'year' => $this->start_year()
+			'day' => $this->start_day()
 		);
 		$arr['endDate'] = array(
-			'day' => $this->end_day(),
+			'year' => $this->end_year(),
 			'month' => $this->end_month(),
-			'year' => $this->end_year()
+			'day' => $this->end_day()
 		);
 		return $arr;
 	}
