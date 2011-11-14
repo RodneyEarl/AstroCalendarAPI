@@ -1,11 +1,5 @@
 <?php
-//Some testing code.
-/*
-$converter = new APIDateConverter();
-$temp = new DateTime();
-$temp = date_parse($temp->format('d-m-Y'));
-$off = $converter->convertToGMT(array('day' => $temp['day'], 'month' => $temp['month'], 'year' => $temp['year']));
-echo $off;*/
+
 /**
  * Class to convert date and times between GMT
  * and Local.
